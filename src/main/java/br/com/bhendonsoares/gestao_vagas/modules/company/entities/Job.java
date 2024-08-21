@@ -1,6 +1,7 @@
 package br.com.bhendonsoares.gestao_vagas.modules.company.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,15 +22,20 @@ public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
+
+    @NotBlank(message = "Esse campo é obrigatório")
     private String description;
+
     private String benefits;
+
+    @NotBlank(message = "Esse campo é obrigatório")
     private String level;
 
     @ManyToOne
     @JoinColumn(name = "company_id", insertable = false, updatable = false)
     private Company company;
 
-    @Column(name = "company_id")
+    @Column(name = "company_id", nullable = false)
     private UUID companyId;
 
     @CreationTimestamp
