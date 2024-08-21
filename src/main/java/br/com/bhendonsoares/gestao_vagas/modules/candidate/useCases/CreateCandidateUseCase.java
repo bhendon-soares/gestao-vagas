@@ -18,7 +18,7 @@ public class CreateCandidateUseCase {
                 .ifPresent((user) -> {
                     throw new AlreadyExistsException("Usuário já existe!");
                 });
-        
+
         return this.candidateRepository.save(candidate);
     }
 }
